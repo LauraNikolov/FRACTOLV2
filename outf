@@ -1,0 +1,11 @@
+draw.c
+fractol
+fractol.c
+fractol.h
+init_mlx.c
+libft
+main.c
+Makefile
+minilibx-linux
+outf
+utils.c

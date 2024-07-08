@@ -6,7 +6,7 @@
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:15:01 by lnicolof          #+#    #+#             */
-/*   Updated: 2024/07/08 13:26:36 by lnicolof         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:36:25 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	pixel_put(t_position position, t_mlx *img, int color)
 	*(unsigned int *)(img->pix_ptr + offset) = color;
 }
 
-void	ft_iterate(t_fractol *fractol, complex_number *c, complex_number *z,
+void	ft_iterate(t_fractol *fractol, t_complex_number *c, t_complex_number *z,
 		t_position position)
 {
 	int	i;
@@ -46,8 +46,8 @@ void	ft_iterate(t_fractol *fractol, complex_number *c, complex_number *z,
 	pixel_put(position, &fractol->mlx_value, color);
 }
 
-void	set_complex(complex_number *z, complex_number *c, t_fractol *fractol,
-		t_position position)
+void	set_complex(t_complex_number *z, t_complex_number *c,
+		t_fractol *fractol, t_position position)
 {
 	z->x = scale(position.x, -2, +2, WIDTH) * fractol->zoom + fractol->shift_x;
 	z->y = scale(position.y, +2, -2, WIDTH) * fractol->zoom + fractol->shift_y;
@@ -65,9 +65,9 @@ void	set_complex(complex_number *z, complex_number *c, t_fractol *fractol,
 
 void	ft_do_math(int x, int y, t_fractol *fractol)
 {
-	complex_number	z;
-	complex_number	c;
-	t_position		position;
+	t_complex_number	z;
+	t_complex_number	c;
+	t_position			position;
 
 	position.x = x;
 	position.y = y;

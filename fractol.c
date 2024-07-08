@@ -6,7 +6,7 @@
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:51:33 by lnicolof          #+#    #+#             */
-/*   Updated: 2024/07/08 13:40:07 by lnicolof         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:33:48 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 	Calculer le carré de cette somme.
 	Ajouter une constante complexe c.*/
 
-complex_number	ft_burning_bird(complex_number z)
+t_complex_number	ft_burning_bird(t_complex_number z)
 {
-	complex_number	result;
+	t_complex_number	result;
 
 	result.x = z.x * z.x - z.y * z.y;
 	result.y = (-2) * (z.x) * negative_complex_number(z.y);
@@ -39,9 +39,9 @@ complex_number	ft_burning_bird(complex_number z)
 	Soustraire le carré de la partie imaginaire à celui de la partie réelle.
 	Ajouter une constante complexe c.
 */
-complex_number	ft_burning_ship(complex_number z)
+t_complex_number	ft_burning_ship(t_complex_number z)
 {
-	complex_number	result;
+	t_complex_number	result;
 
 	result.x = z.x * z.x - z.y * z.y;
 	result.y = -2 * negative_complex_number(z.x * z.y);

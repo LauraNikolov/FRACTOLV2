@@ -6,7 +6,7 @@
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:48:54 by lnicolof          #+#    #+#             */
-/*   Updated: 2024/07/08 13:34:04 by lnicolof         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:37:37 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@ double	scale(double unscaled_num, double new_min, double new_max,
 	return ((new_max - new_min) * (unscaled_num - 0) / (old_max - 0) + new_min);
 }
 
-complex_number	addition_complex_number(complex_number z1, complex_number z2)
+t_complex_number	addition_complex_number(t_complex_number z1,
+		t_complex_number z2)
 {
-	complex_number	result;
+	t_complex_number	result;
 
 	result.x = z1.x + z2.x;
 	result.y = z1.y + z2.y;
 	return (result);
 }
 
-complex_number	multiply_complex_number(complex_number z)
+t_complex_number	multiply_complex_number(t_complex_number z)
 {
-	complex_number	result;
+	t_complex_number	result;
 
 	result.x = (z.x * z.x) - (z.y * z.y);
 	result.y = 2 * z.x * z.y;

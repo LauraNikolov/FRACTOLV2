@@ -6,7 +6,7 @@
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 19:18:46 by lnicolof          #+#    #+#             */
-/*   Updated: 2024/07/08 13:31:10 by lnicolof         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:37:16 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	ft_error(int argc, char **argv, t_fractol *fractol)
 	}
 }
 
-complex_number	set_z(complex_number z, complex_number *c, char *fractal_name)
+t_complex_number	set_z(t_complex_number z, t_complex_number *c,
+		char *fractal_name)
 {
 	if (!ft_strncmp(fractal_name, "burning bird", 12))
 		return (z = addition_complex_number(ft_burning_bird(z), *c));

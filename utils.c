@@ -6,7 +6,7 @@
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:48:54 by lnicolof          #+#    #+#             */
-/*   Updated: 2024/07/02 18:28:57 by lnicolof         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:34:04 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ complex_number	multiply_complex_number(complex_number z)
 	result.y = 2 * z.x * z.y;
 	return (result);
 }
-
 
 double	negative_complex_number(double nb)
 {

@@ -6,11 +6,9 @@
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:51:33 by lnicolof          #+#    #+#             */
-/*   Updated: 2024/07/02 12:53:48 by lnicolof         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:40:07 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "fractol.h"
 
 #include "fractol.h"
 
@@ -48,4 +46,11 @@ complex_number	ft_burning_ship(complex_number z)
 	result.x = z.x * z.x - z.y * z.y;
 	result.y = -2 * negative_complex_number(z.x * z.y);
 	return (result);
+}
+
+void	ft_fractal(t_fractol *fractol)
+{	
+	init_mlx(fractol);
+	draw_img(fractol);
+	mlx_loop(fractol->mlx_connection);
 }

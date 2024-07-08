@@ -6,59 +6,52 @@
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:15:01 by lnicolof          #+#    #+#             */
-/*   Updated: 2024/07/02 18:32:48 by lnicolof         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:26:36 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	opti_pixel_put(int x, int y, t_mlx *img, int color)
+void	pixel_put(t_position position, t_mlx *img, int color)
 {
 	int	offset;
+	int	x;
+	int	y;
 
+	x = position.x;
+	y = position.y;
 	offset = (y * img->line_len) + (x * (img->bpp / 8));
 	*(unsigned int *)(img->pix_ptr + offset) = color;
 }
 
-
-complex_number	set_z(complex_number z, complex_number *c, char *fractal_name)
+void	ft_iterate(t_fractol *fractol, complex_number *c, complex_number *z,
+		t_position position)
 {
-	if (!ft_strncmp(fractal_name, "= (0burning bird", 12))
-		return (z = addition_complex_number(ft_burning_bird(z), *c));
-	else if (!ft_strncmp(fractal_name, "burning ship", 12))
-		return (z = addition_complex_number(ft_burning_ship(z), *c));
-	else
-		return (z = addition_complex_number(multiply_complex_number(z), *c));
-}
+	int	i;
+	int	color;
 
-void ft_iterate(t_fractol *fractol, complex_number *c, complex_number *z, int x, int y)
-{
-    int i;
-    int color;
-
-    i = 0;
-    color = 0;
-    while(i < fractol->iteration)
-    {
-        *z = set_z(*z, c, fractol->name);
-        if(((z->x * z->x) + (z->y * z->y)) > 6)
-        {
-            color = scale(i, 0, 355, fractol->iteration);
-			opti_pixel_put(x, y, &fractol->mlx_value, color);
+	i = 0;
+	color = 0;
+	while (i < fractol->iteration)
+	{
+		*z = set_z(*z, c, fractol->name);
+		if (((z->x * z->x) + (z->y * z->y)) > 6)
+		{
+			color = scale(i, 0, 355, fractol->iteration);
+			pixel_put(position, &fractol->mlx_value, color);
 			return ;
-        }
-        ++i;
-    }
-    
-    opti_pixel_put(x, y, &fractol->mlx_value, color);
+		}
+		++i;
+	}
+	pixel_put(position, &fractol->mlx_value, color);
 }
 
-
-void set_complex(complex_number *z, complex_number *c, t_fractol *fractol, int x, int y)
+void	set_complex(complex_number *z, complex_number *c, t_fractol *fractol,
+		t_position position)
 {
-    z->x = scale(x, -2, +2, WIDTH) * fractol->zoom + fractol->shift_x;
-    z->y = scale(y, +2, -2, WIDTH) * fractol->zoom + fractol->shift_y;
-    if (!ft_strncmp(fractol->name, "julia", 5))
+	z->x = scale(position.x, -2, +2, WIDTH) * fractol->zoom + fractol->shift_x;
+	z->y = scale(position.y, +2, -2, WIDTH) * fractol->zoom + fractol->shift_y;
+	if (!ft_strncmp(fractol->name, "julia", 5))
 	{
 		c->x = fractol->julia_x;
 		c->y = fractol->julia_y;
@@ -70,20 +63,21 @@ void set_complex(complex_number *z, complex_number *c, t_fractol *fractol, int x
 	}
 }
 
-
-void ft_do_math(int x, int y, t_fractol *fractol)
+void	ft_do_math(int x, int y, t_fractol *fractol)
 {
-    complex_number z;
-    complex_number c;
+	complex_number	z;
+	complex_number	c;
+	t_position		position;
 
-    set_complex(&z, &c, fractol, x, y);
-    ft_iterate(fractol, &c, &z, x, y);
+	position.x = x;
+	position.y = y;
+	set_complex(&z, &c, fractol, position);
+	ft_iterate(fractol, &c, &z, position);
 }
 
-
-void draw_img(t_fractol *fractol)
+void	draw_img(t_fractol *fractol)
 {
-    int	x;
+	int	x;
 	int	y;
 
 	y = -1;
